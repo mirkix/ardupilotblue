@@ -22,4 +22,13 @@ Howto use [BeagleBone Blue](https://github.com/jadonk/beaglebone-blue) with [Ard
 12. Install DTB: `sudo make install`
 13. Reboot system: `sudo reboot`
 
+## Compile ArduPilot
+1. Clone ArduPilot code: `git clone https://github.com/ArduPilot/ardupilot.git`
+2. `cd ardupilot`
+3. `git checkout master`
+4. `git submodule update --init --recursive`
+5. `./waf configure --board=blue`
+6. `./waf (take about 1h20m)`
+7. `cp build/bbbmini/bin/* /home/debian/`
+
 ## Run ArduPilot
