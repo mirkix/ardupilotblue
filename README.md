@@ -32,3 +32,36 @@ Howto use [BeagleBone Blue](https://github.com/jadonk/beaglebone-blue) with [Ard
 7. `cp build/bbbmini/bin/* /home/debian/`
 
 ## Run ArduPilot
+
+
+### Automatic start ArduPilot after boot
+
+If ArduPilot should start automatically at boot time follow the instructions below:
+
+Edit `/etc/rc.local` with `sudo nano /etc/rc.local`
+Modify file to (use your ArduPilot file and parameter):
+```
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+/bin/sleep 10
+/bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_21_pinmux/state
+/bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_22_pinmux/state
+/home/debian/arducopter -B /dev/ttyO2 -C /dev/ttyUSB0 > /home/debian/arducopter.log &
+
+exit 0
+```
+
+1. Save file: `Strg + o + Enter`
+2. Exit nano: `Strg + x`
+3. Reboot BegaleBone with `sudo reboot`
