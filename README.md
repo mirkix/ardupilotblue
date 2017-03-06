@@ -3,6 +3,9 @@ Howto use [BeagleBone Blue](https://github.com/jadonk/beaglebone-blue) with [Ard
 
 # Hardware
 
+## Receiver
+The RC receiver signal has to be connected to connector E4 pin 4. Make sure the signal does not exceed 3.3 volts, otherwise your BeagleBone Blue can be damaged.
+
 # Software
 
 ## Prepare BeagleBone Blue
