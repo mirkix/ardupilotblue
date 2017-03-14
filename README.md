@@ -1,7 +1,7 @@
 # BeagleBone Blue
 Howto use [BeagleBone Blue](https://github.com/jadonk/beaglebone-blue) with [ArduPilot](https://github.com/ArduPilot/ardupilot)
 
-[![alt text](https://img.youtube.com/vi/v2xWtlyYrtE&/0.jpg)](https://youtu.be/v2xWtlyYrtE&)
+[![alt text](https://img.youtube.com/vi/v2xWtlyYrtE/0.jpg)](https://youtu.be/v2xWtlyYrtE)
 
 ![alt text](https://github.com/jadonk/beaglebone-blue/blob/master/docs/BeagleBone_Blue_balloons.png "BeagleBone Blue")
 
