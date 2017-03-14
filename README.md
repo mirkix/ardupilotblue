@@ -3,11 +3,11 @@ Howto use [BeagleBone Blue](https://github.com/jadonk/beaglebone-blue) with [Ard
 
 [![alt text](https://img.youtube.com/vi/v2xWtlyYrtE/0.jpg)](https://youtu.be/v2xWtlyYrtE)
 
-![alt text](https://github.com/jadonk/beaglebone-blue/blob/master/docs/BeagleBone_Blue_balloons.png "BeagleBone Blue")
-
 [![alt text](https://img.youtube.com/vi/8bVc9X869pw/0.jpg)](https://youtu.be/8bVc9X869pw)
 
 # Hardware
+
+![alt text](https://github.com/jadonk/beaglebone-blue/blob/master/docs/BeagleBone_Blue_balloons.png "BeagleBone Blue")
 
 ## Receiver
 The RC receiver signal has to be connected to connector E4 pin 4. Make sure the signal does not exceed 3.3 volts, otherwise your BeagleBone Blue can be damaged.
