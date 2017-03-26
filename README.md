@@ -35,7 +35,7 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 4. `git submodule update --init --recursive`
 5. `./waf configure --board=blue`
 6. `./waf (take about 1h20m)`
-7. `cp build/bbbmini/bin/* /home/debian/`
+7. `cp build/blue/bin/* /home/debian/`
 
 ## Run ArduPilot
 
