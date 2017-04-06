@@ -19,33 +19,23 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 
 ## Prepare BeagleBone Blue
 1. Update software: `sudo apt update && sudo apt upgrade -y`
-2. Install software: `sudo apt install -y bb-cape-overlays cpufrequtils g++ liblttng-ust-dev pkg-config gawk git make screen python python-dev python-lxml python-pip`
-3. Install Python library: `sudo pip install future`
-4. Set link to pkg-config: `sudo ln -s pkg-config /usr/bin/arm-linux-gnueabihf-pkg-config`
-5. Add BLUE DTB: `sudo sed -i 's/#dtb=$/dtb=am335x-boneblue-ArduPilot.dtb/' /boot/uEnv.txt`
-6. Set clock to fixed 1GHz: `sudo sed -i 's/GOVERNOR="ondemand"/GOVERNOR="performance"/g' /etc/init.d/cpufrequtils`
-7. Update scripts: `cd /opt/scripts && sudo git pull`
-8. Install RT Kernel: `sudo /opt/scripts/tools/update_kernel.sh --ti-rt-channel --lts-4_4`
-9. Reboot system: `sudo reboot`
-
-## Compile ArduPilot
-1. Clone ArduPilot code: `git clone https://github.com/ArduPilot/ardupilot.git`
-2. `cd ardupilot`
-3. `git checkout master`
-4. `git submodule update --init --recursive`
-5. `./waf configure --board=blue`
-6. `./waf (take about 1h20m)`
-7. `cp build/blue/bin/* /home/debian/`
-
-## Run ArduPilot
+2. Install software: `sudo apt install -y bb-cape-overlays cpufrequtils ardupilot-copter-blue`
+3. Add BLUE DTB: `sudo sed -i 's/#dtb=$/dtb=am335x-boneblue-ArduPilot.dtb/' /boot/uEnv.txt`
+4. Set clock to 1GHz: `sudo sed -i 's/GOVERNOR="ondemand"/GOVERNOR="performance"/g' /etc/init.d/cpufrequtils`
+5. Update scripts: `cd /opt/scripts && sudo git pull`
+6. Install RT Kernel 4.4: `sudo /opt/scripts/tools/update_kernel.sh --ti-rt-channel --lts-4_4`
+7. Reboot system: `sudo reboot`
 
 
-### Automatic start ArduPilot after boot
+## Run ArduCopter
+`sudo /usr/bin/ardupilot/blue-arducopter`
 
-If ArduPilot should start automatically at boot time follow the instructions below:
+### Automatic start ArduCopter after boot
+
+If ArduCilot should start automatically at boot time follow the instructions below:
 
 Edit `/etc/rc.local` with `sudo nano /etc/rc.local`
-Modify file to (use your ArduPilot file and parameter):
+Modify file to:
 ```
 #!/bin/sh -e
 #
@@ -63,7 +53,7 @@ Modify file to (use your ArduPilot file and parameter):
 /bin/sleep 10
 /bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_21_pinmux/state
 /bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_22_pinmux/state
-/home/debian/arducopter -B /dev/ttyO2 -C /dev/ttyUSB0 > /home/debian/arducopter.log &
+/usr/bin/ardupilot/blue-arducopter -B /dev/ttyO2 -C /dev/ttyUSB0 > /home/debian/arducopter.log &
 
 exit 0
 ```
