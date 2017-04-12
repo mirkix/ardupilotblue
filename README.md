@@ -32,7 +32,7 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 
 ### Automatic start ArduCopter after boot
 
-If ArduCilot should start automatically at boot time follow the instructions below:
+If ArduCopter should start automatically at boot time follow the instructions below:
 
 Edit `/etc/rc.local` with `sudo nano /etc/rc.local`
 Modify file to:
