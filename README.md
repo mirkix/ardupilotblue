@@ -26,9 +26,15 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 6. Install RT Kernel 4.4: `sudo /opt/scripts/tools/update_kernel.sh --ti-rt-channel --lts-4_4`
 7. Reboot system: `sudo reboot`
 
+## Prebuild ArduPilot 
+1. Download ready compiled ArduPilot file from http://bbbmini.org/download/blue/
+2. Copy file via SCP or microSD on your BeagleBone Blue
 
 ## Run ArduCopter
-`sudo /usr/bin/ardupilot/blue-arducopter`
+`sudo ./arducopter`
+
+## Run ArduCopter
+`sudo ./arduplane`
 
 ### Automatic start ArduCopter after boot
 
@@ -53,7 +59,7 @@ Modify file to:
 /bin/sleep 10
 /bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_21_pinmux/state
 /bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_22_pinmux/state
-/usr/bin/ardupilot/blue-arducopter -B /dev/ttyO2 -C /dev/ttyUSB0 > /home/debian/arducopter.log &
+/home/debian/arducopter -B /dev/ttyO2 -C /dev/ttyUSB0 > /home/debian/arducopter.log &
 
 exit 0
 ```
