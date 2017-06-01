@@ -30,11 +30,43 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 1. Download ready compiled ArduPilot file from http://bbbmini.org/download/blue/
 2. Copy file via SCP or microSD on your BeagleBone Blue
 
-## Run ArduCopter
-`sudo ./arducopter`
+## Run ArduPilot
 
-## Run ArduCopter
-`sudo ./arduplane`
+ArduCopter:
+`sudo /home/debian/arducopter` (plus parameter) 
+
+ArduPlane:
+`sudo /home/debian/arduplane` (plus parameter) 
+
+ArduRover:
+`sudo /home/debian/ardurover` (plus parameter) 
+
+Parameter mapping:
+
+start parameter | ArduPilot serial port 
+------------ | -------------
+-A | SERIAL0
+-B | SERIAL3
+-C | SERIAL1
+-D | SERIAL2
+-E | SERIAL4
+-F | SERIAL5
+
+Check http://ardupilot.org/copter/docs/parameters.html#serial0-baud-serial0-baud-rate to set the right value for `SERIALx_BAUD` and `SERIALx_PROTOCOL`
+
+To connect a MAVLink groundstation with IP 192.168.178.26 add `-C udp:192.168.178.26:14550`
+
+To use MAVLink via radio connected to UART4 add `-C /dev/ttyO4`. 
+
+If there is a GPS connected to UART5 add `-B /dev/ttyO5`. 
+
+Example: MAVLink groundstation with IP 192.168.178.26 on port 14550 and GPS connected to `/dev/ttyO5` UART5.
+
+`sudo /home/debian/arducopter-quad -C udp:192.168.178.26:14550 -B /dev/ttyO5`
+
+Example: MAVLink groundstation via radio connected to UART4 and GPS connected to `/dev/ttyO5` UART5.
+
+`sudo /home/debian/arducopter-quad -B /dev/ttyO5 -C /dev/ttyO4`
 
 ### Automatic start ArduCopter after boot
 
