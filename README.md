@@ -20,11 +20,10 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 ## Prepare BeagleBone Blue
 1. Update software: `sudo apt update && sudo apt upgrade -y`
 2. Install software: `sudo apt install -y bb-cape-overlays cpufrequtils ardupilot-copter-blue`
-3. Add BLUE DTB: `sudo sed -i 's/#dtb=$/dtb=am335x-boneblue-ArduPilot.dtb/' /boot/uEnv.txt`
-4. Set clock to 1GHz: `sudo sed -i 's/GOVERNOR="ondemand"/GOVERNOR="performance"/g' /etc/init.d/cpufrequtils`
-5. Update scripts: `cd /opt/scripts && sudo git pull`
-6. Install RT Kernel 4.4: `sudo /opt/scripts/tools/update_kernel.sh --ti-rt-channel --lts-4_4`
-7. Reboot system: `sudo reboot`
+3. Set clock to 1GHz: `sudo sed -i 's/GOVERNOR="ondemand"/GOVERNOR="performance"/g' /etc/init.d/cpufrequtils`
+4. Update scripts: `cd /opt/scripts && sudo git pull`
+5. Install RT Kernel 4.4: `sudo /opt/scripts/tools/update_kernel.sh --ti-rt-channel --lts-4_4`
+6. Reboot system: `sudo reboot`
 
 ## Prebuild ArduPilot 
 1. Download ready compiled ArduPilot file from http://bbbmini.org/download/blue/
@@ -91,6 +90,7 @@ Modify file to:
 /bin/sleep 10
 /bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_21_pinmux/state
 /bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_22_pinmux/state
+/bin/echo pruecapin_pu > /sys/devices/platform/ocp/ocp:P8_15_pinmux/state
 /home/debian/arducopter -B /dev/ttyO2 -C /dev/ttyUSB0 > /home/debian/arducopter.log &
 
 exit 0
