@@ -71,6 +71,8 @@ Example: MAVLink groundstation via radio connected to UART4 and GPS connected to
 
 If ArduCopter should start automatically at boot time follow the instructions below:
 
+SYS V init based startup
+
 Edit `/etc/rc.local` with `sudo nano /etc/rc.local`
 Modify file to:
 ```
@@ -99,6 +101,61 @@ exit 0
 1. Save file: `Strg + o + Enter`
 2. Exit nano: `Strg + x`
 3. Reboot BegaleBone with `sudo reboot`
+
+Systemd based startup, useful with arducopter packages from debian/rcnee repo.
+Edit defaults file with vi command below.
+
+```
+sudo vi /etc/defaults/arducopter
+```
+
+Enter contents below, then use ESC, then :wq to exit.
+
+```
+TELEM1="-C /dev/ttyS1"
+TELEM2="-A udp:192.168.100.22:14550"
+#TELEM2="-C /dev/ttyAMA0"
+GPS="-B /dev/ttyS2"
+
+# Options to pass to ArduCopter
+#ARDUCOPTER_OPTS=$TELEM1 $TELEM2
+
+# -A is a console switch (usually this is a Wi-Fi link)
+# -C is a telemetry switch
+# Usually this is either /dev/ttyAMA0 - UART connector on your Navio
+# or /dev/ttyUSB0 if you're using a serial to USB convertor
+
+# -B or -E is used to specify non default GPS
+```
+
+Edit systemd service file with vi command below, or use sudo nano command from above
+
+```
+sudo vi /lib/systemd/system/arducopter.service
+```
+
+Replace contents of service file with below. Use ESC, then :wq to exit.
+
+```
+[Unit]
+Description=ArduCopter Service
+After=networking.service
+Conflicts=arduplane.service ardupilot.service ardurover.service
+
+[Service]
+EnvironmentFile=/etc/default/arducopter
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_21_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_22_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_24_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_26_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo pruecapin_pu > /sys/devices/platform/ocp/ocp:P8_15_pinmux/state"
+ExecStart=/usr/bin/ardupilot/blue-arducopter $TELEM1 $TELEM2 $GPS
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
 
 # License
 
