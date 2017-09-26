@@ -103,8 +103,26 @@ exit 0
 3. Reboot BegaleBone with `sudo reboot`
 
 Systemd based startup, useful with arducopter packages from debian/rcnee repo.
+Edit defaults file with vi command below. Use ESC, then :wq to exit.
 
-Edit systemd startup vi with vi command below, or use sudo nano command from above
+sudo vi /etc/defaults/arducopter
+
+TELEM1="-C /dev/ttyS1"
+TELEM2="-A udp:192.168.100.22:14550"
+#TELEM2="-C /dev/ttyAMA0"
+GPS="-B /dev/ttyS2"
+
+# Options to pass to ArduCopter
+#ARDUCOPTER_OPTS=$TELEM1 $TELEM2
+
+# -A is a console switch (usually this is a Wi-Fi link)
+# -C is a telemetry switch
+# Usually this is either /dev/ttyAMA0 - UART connector on your Navio
+# or /dev/ttyUSB0 if you're using a serial to USB convertor
+
+# -B or -E is used to specify non default GPS
+
+Edit systemd service file with vi command below, or use sudo nano command from above
 
 sudo vi /lib/systemd/system/arducopter.service
 
