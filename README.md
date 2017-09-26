@@ -71,6 +71,8 @@ Example: MAVLink groundstation via radio connected to UART4 and GPS connected to
 
 If ArduCopter should start automatically at boot time follow the instructions below:
 
+SYS V init based startup
+
 Edit `/etc/rc.local` with `sudo nano /etc/rc.local`
 Modify file to:
 ```
@@ -99,6 +101,33 @@ exit 0
 1. Save file: `Strg + o + Enter`
 2. Exit nano: `Strg + x`
 3. Reboot BegaleBone with `sudo reboot`
+
+Systemd based startup, useful with arducopter packages from debian/rcnee repo.
+
+Edit systemd startup vi with vi command below, or use sudo nano command from above
+
+sudo vi /lib/systemd/system/arducopter.service
+
+Replace contents of service file with below. Use ESC, then :wq to exit.
+
+[Unit]
+Description=ArduCopter Service
+After=networking.service
+Conflicts=arduplane.service ardupilot.service ardurover.service
+
+[Service]
+EnvironmentFile=/etc/default/arducopter
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_21_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_22_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_24_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_26_pinmux/state"
+ExecStartPre=/bin/bash -c "/bin/echo pruecapin_pu > /sys/devices/platform/ocp/ocp:P8_15_pinmux/state"
+ExecStart=/usr/bin/ardupilot/blue-arducopter $TELEM1 $TELEM2 $GPS
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 
 # License
 
