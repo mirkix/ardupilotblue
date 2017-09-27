@@ -106,7 +106,7 @@ Systemd based startup, useful with arducopter packages from debian/rcnee repo.
 Edit defaults file with vi command below.
 
 ```
-sudo vi /etc/defaults/arducopter
+sudo vi /etc/default/arducopter
 ```
 
 Enter contents below, then use ESC, then :wq to exit.
