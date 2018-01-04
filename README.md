@@ -14,6 +14,8 @@ The RC receiver signal has to be connected to connector E4 pin 4. This pin is a 
 
 ![alt text](image/bbbluerx.jpg "BeagleBone Blue E4 pin 4")
 
+## PWM / Servo
+If you connect servos to the BeagleBone Blue than keep in mind that power is not applied by default because it is not necessary for ESCs. To enable power add: `/bin/echo 1 > /sys/class/gpio/gpio80/value` to `/etc/rc.local`.
 
 ## GPS
 I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make sure the signal does not exceed 3.3 volts, otherwise your BeagleBone Blue can be damaged.
