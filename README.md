@@ -10,7 +10,9 @@ Howto use [BeagleBone Blue](https://github.com/jadonk/beaglebone-blue) with [Ard
 ![alt text](https://github.com/jadonk/beaglebone-blue/blob/master/docs/BeagleBone_Blue_balloons.png "BeagleBone Blue")
 
 ## Receiver
-The RC receiver signal has to be connected to connector E4 pin 4. This pin is a multi protocol pin (S.BUS, PPM-Sum, Spektrum Satellit DSM), the protocol will be automatically detected. Make sure the signal does not exceed 3.3 volts, otherwise your BeagleBone Blue can be damaged.
+Since 17.01.2018 you can use the DSM2 connector or connector E4 pin 4 on your BealgeBone Blue.
+
+Before 17.01.2018 the RC receiver signal has to be connected to connector E4 pin 4. This pin is a multi protocol pin (S.BUS, PPM-Sum, Spektrum Satellit DSM), the protocol will be automatically detected. Make sure the signal does not exceed 3.3 volts, otherwise your BeagleBone Blue can be damaged.
 
 ![alt text](image/bbbluerx.jpg "BeagleBone Blue E4 pin 4")
 
