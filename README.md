@@ -26,7 +26,7 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 
 ## Prepare BeagleBone Blue
 1. Update software: `sudo apt update && sudo apt upgrade -y`
-2. Install software: `sudo apt install -y bb-cape-overlays cpufrequtils ardupilot-copter-blue`
+2. Install software: `sudo apt install -y bb-cape-overlays cpufrequtils`
 3. Set clock to 1GHz: `sudo sed -i 's/GOVERNOR="ondemand"/GOVERNOR="performance"/g' /etc/init.d/cpufrequtils`
 4. Update scripts: `cd /opt/scripts && sudo git pull`
 5. Install RT Kernel 4.4: `sudo /opt/scripts/tools/update_kernel.sh --ti-rt-channel --lts-4_4`
