@@ -16,6 +16,12 @@ Before 17.01.2018 the RC receiver signal has to be connected to connector E4 pin
 
 ![alt text](image/bbbluerx.jpg "BeagleBone Blue E4 pin 4")
 
+### Tested receiver
+
+Name | Protocol | DSM2 connector | E4 connector (pin 4) | Voltage divider needed
+-----|----------|----------------|----------------------|-----------------------
+FrSky X8R | SBUS | not tested | working | no, 3.3V output
+
 ## PWM / Servo
 If you connect servos to the BeagleBone Blue than keep in mind that power is not applied by default because it is not necessary for ESCs. To enable power add: `/bin/echo 1 > /sys/class/gpio/gpio80/value` to `/etc/rc.local`.
 
