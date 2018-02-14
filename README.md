@@ -26,6 +26,8 @@ OrangeRx Satellite Receiver | DSM | working | not tested | no, 3.3V output
 ## PWM / Servo
 If you connect servos to the BeagleBone Blue than keep in mind that power is not applied by default because it is not necessary for ESCs. To enable power add: `/bin/echo 1 > /sys/class/gpio/gpio80/value` to `/etc/rc.local`.
 
+![alt text](image/servopwr.png "Servo power")
+
 ## GPS
 I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make sure the signal does not exceed 3.3 volts, otherwise your BeagleBone Blue can be damaged.
 
