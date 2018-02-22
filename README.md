@@ -21,6 +21,7 @@ Before 17.01.2018 the RC receiver signal has to be connected to connector E4 pin
 Name | Protocol | DSM2 connector | E4 connector (pin 4) | Voltage divider needed
 -----|----------|----------------|----------------------|-----------------------
 FrSky X8R | SBUS | not tested | working | no, 3.3V output
+FrSky X6R | SBUS | not tested | working | no, 3.3V output
 OrangeRx Satellite Receiver | DSM | working | not tested | no, 3.3V output
 
 ## PWM / Servo
