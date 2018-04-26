@@ -34,6 +34,8 @@ I recommend to use a u-blox M8N GPS. Connect the GPS to the GPS connector. Make 
 
 # Software
 
+You can follow this guide, but [@imfatant](https://github.com/imfatant) has written a realy great ArduPilot Blue beginners guide https://github.com/imfatant/test.
+
 ## Prepare BeagleBone Blue
 1. Update software: `sudo apt update && sudo apt upgrade -y`
 2. Install software: `sudo apt install -y bb-cape-overlays cpufrequtils`
