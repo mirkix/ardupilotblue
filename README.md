@@ -25,7 +25,7 @@ FrSky X6R | SBUS | not tested | working | no, 3.3V output
 OrangeRx Satellite Receiver | DSM | working | not tested | no, 3.3V output
 
 ## PWM / Servo
-If you connect servos to the BeagleBone Blue than keep in mind that power is not applied by default because it is not necessary for ESCs. To enable power add: `/bin/echo 1 > /sys/class/gpio/gpio80/value` to `/etc/rc.local`.
+If you connect servos to the BeagleBone Blue then keep in mind that power is not applied by default because it is not necessary for ESCs. To enable power add: `/bin/echo 1 > /sys/class/gpio/gpio80/value` to `/etc/rc.local`.
 
 ![alt text](image/servopwr.png "Servo power")
 
